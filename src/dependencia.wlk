@@ -23,6 +23,6 @@ class Dependencia {
 	method esGrande() = empleados >= 40 && flotaDeRodados.size() >= 5
 	
 	method totalPasajeros() = pedidos.sum({p => p.pasajeros()})
-	method pedidosInsatisfechos() = pedidos.filter({p => })// algo que no que es
+	method pedidosInsatisfechos() =  pedidos.filter({p => !flotaDeRodados.any({rod => p.puedeSatisfacerElPedido(rod)})})
 	method tienenLosPedidosComoIncompatible(color) {} //Pendiente
 }
