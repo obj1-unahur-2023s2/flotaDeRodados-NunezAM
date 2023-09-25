@@ -1,0 +1,113 @@
+import dependencia.*
+import vehiculos.*
+
+describe "tests Dependencias" {
+	const deportes = new Dependencia(empleados = 45)
+	const cultura = new Dependencia(empleados = 31)
+	const cachito = new Corsa(color = "rojo")
+	
+	
+	method agregarFlotaADeportes() {
+		deportes.agregarAFlota(cachito)
+		deportes.agregarAFlota(new Corsa(color = "azul"))
+		deportes.agregarAFlota(new Corsa(color = "verde"))
+		deportes.agregarAFlota(new Kwid(tanqueAdicional = true))
+		deportes.agregarAFlota(new AutosEspeciales(capacidad = 5, velocidadMaxima = 160, peso = 1200, color = "beige"))
+	}
+	
+	method agregarFlotaACultura() {
+		cultura.agregarAFlota(cachito)
+		cultura.agregarAFlota(new Kwid(tanqueAdicional = true))
+		cultura.agregarAFlota(new Kwid(tanqueAdicional = true))
+		cultura.agregarAFlota(new Kwid(tanqueAdicional = false))
+		trafic.interior(popular)
+		trafic.motor(bataton)
+		cultura.agregarAFlota(trafic)
+	}
+	
+	//Tests Deportes
+	test "Peso de la flota de Deportes es 6450" {
+		self.agregarFlotaADeportes()
+		assert.equals(6450, deportes.pesoTotalFlota())
+	}
+	
+	test "La flota de Deportes está bien equipada" {
+		self.agregarFlotaADeportes()
+		assert.that(deportes.estaBienEquipada())
+	}
+	
+	test "La capacidad de la flota de Deportes en azul es 7" {
+		self.agregarFlotaADeportes()
+		assert.equals(7, deportes.capacidadTotalEnColor("azul"))
+	}
+	
+	test "El color del auto más rápido de la flota de Deportes es beige" {
+		self.agregarFlotaADeportes()
+		assert.equals("beige", deportes.colorDelRodadoMasRapido())
+	}
+	
+	test "La dependencia de Deportes es grande" {
+		self.agregarFlotaADeportes()
+		assert.that(deportes.esGrande())
+	}
+	
+	test "La capacidad faltante de Deportes es 25" {
+		self.agregarFlotaADeportes()
+		assert.equals(25, deportes.capacidadFaltante())
+	}
+	
+	
+	//Tests Cultura
+	test "Peso de la flota de Cultura es 10700" {
+		self.agregarFlotaACultura()
+		assert.equals(10700, cultura.pesoTotalFlota())
+	}
+	
+	test "La flota de Cultura está bien equipada" {
+		self.agregarFlotaACultura()
+		assert.notThat(cultura.estaBienEquipada())
+	}
+	
+	test "La capacidad de la flota de Cultura en azul es 10" {
+		self.agregarFlotaACultura()
+		assert.equals(10, cultura.capacidadTotalEnColor("azul"))
+	}
+	
+	test "El color del auto más rápido de la flota de Cultura es rojo" {
+		self.agregarFlotaACultura()
+		assert.equals("rojo", cultura.colorDelRodadoMasRapido())
+	}
+	
+	test "La dependencia de Cultura es grande" {
+		self.agregarFlotaACultura()
+		assert.notThat(cultura.esGrande())
+	}
+	
+	test "La capacidad faltante de Cultura es 5" {
+		self.agregarFlotaACultura()
+		assert.equals(5, cultura.capacidadFaltante())
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

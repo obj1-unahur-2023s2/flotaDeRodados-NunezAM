@@ -1,0 +1,36 @@
+import pedido.*
+import dependencia.*
+import vehiculos.*
+
+describe "Tests pedido" {
+	
+	const cachito = new Corsa(color = "rojo")
+								   
+	test "cachito puede satisfacer el pedido" {
+		const pedido1 = new Pedido(tiempoMaximo = 8, distanciaEnKm = 960, pasajeros = 4, coloresIncompatibles = #{"azul", "negro"})
+		
+		assert.that(pedido1.puedeSatisfacerElPedido(cachito))
+	
+	}
+	
+	test "cachito no puede satidfacer con color rojo como incompatible" {
+		const pedido2 = new Pedido(tiempoMaximo = 8, distanciaEnKm = 960, pasajeros = 4, coloresIncompatibles = #{"azul", "negro", "rojo"})
+		
+		assert.notThat(pedido2.puedeSatisfacerElPedido(cachito))
+	}
+	
+	test "cachito no puede satisfacer con 6 pasajeros como pedido" {
+		const pedido3 = new Pedido(tiempoMaximo = 8, distanciaEnKm = 960, pasajeros = 6, coloresIncompatibles = #{"azul", "negro"})
+		
+		assert.notThat(pedido3.puedeSatisfacerElPedido(cachito))	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
