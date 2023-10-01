@@ -24,5 +24,6 @@ class Dependencia {
 	
 	method totalPasajeros() = pedidos.sum({p => p.pasajeros()})
 	method pedidosInsatisfechos() =  pedidos.filter({p => !flotaDeRodados.any({rod => p.puedeSatisfacerElPedido(rod)})})
-	method tienenLosPedidosComoIncompatible(color) {} //Pendiente
+	method tienenLosPedidosComoIncompatible(color) = pedidos.all({p => p.coloresIncompatibles().contains(color)})
+	method relajar() = pedidos.forEach({p => p.relajar()})
 }

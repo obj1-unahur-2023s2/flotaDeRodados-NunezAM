@@ -1,10 +1,21 @@
 class Corsa {
 	const color
-
+	var property position
+	const property image
+	const posiciones = []
+	
+	method posicionX(posicion) = posicion.get(0)
 	method velocidadMaxima() = 150
 	method peso() = 1300
 	method color() = color
 	method capacidad() = 4
+	method pasoPor(posicion) = posiciones.contains(posicion)
+	method cambiarPosicion(unaPosicion) {
+		position = unaPosicion
+		posiciones.add(unaPosicion)
+	}
+	method pasoPorFila(numero) = posiciones.map({p => self.posicionX(p)}).contains(numero)
+	method recorrioFilas(lista_de_numeros) = lista_de_numeros.all({n => self.pasoPorFila(n)})
 }
 
 class Kwid{
